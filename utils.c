@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:37:04 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/12 18:24:14 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:32:34 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*find_path(char *command, char **envp)
 	i = 0;
 	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
-	paths = ft_split(envp[i], ':');
+	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
 	while (paths[i])
 	{
@@ -75,7 +75,10 @@ char	*find_path(char *command, char **envp)
 		path = ft_strjoin(tmp, command);
 		free(tmp);
 		if (access(path, X_OK) == 0)
+		{
+			ft_free_split(paths);
 			return (path);
+		}
 		free(path);
 		i++;
 	}

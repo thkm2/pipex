@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:46 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/12 18:19:44 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:56:15 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parent_process(char **av, char **envp, int *fd)
 {
 	int	fileout;
 
-	fileout = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	fileout = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fileout == -1)
 		error_exit();
 	close(fd[1]);
@@ -57,6 +57,6 @@ int	main(int ac, char **av, char **envp)
 		error_exit();
 	if (pid == 0)
 		child_process(av, envp, fd);
-	wait(&pid);
+	wait(NULL);
 	parent_process(av, envp, fd);
 }
