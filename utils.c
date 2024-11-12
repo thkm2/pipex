@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:37:04 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/12 17:03:00 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/12 17:33:34 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*find_path(char *command, char **envp)
 	char	**paths;
 	char	*path;
 	char	*tmp;
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (ft_strnstr(envp[i], "PATH", 4) == 0)

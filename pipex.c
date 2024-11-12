@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:36:46 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/12 17:00:24 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/12 17:36:23 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	main(int ac, char **av, char **envp)
 	if (ac != 5)
 	{
 		write(1, "Erreur...\n", 10);
-		write(1, "Essaye dans ce format : './pipex file1 cmd1 cmd2 file2'\n", 56);
+		write(1, "Essaye dans ce format : './pipex file1 cmd1 cmd2 file2'\n",
+			56);
 		return (0);
 	}
 	if (pipe(fd) == -1)
