@@ -6,7 +6,7 @@
 /*   By: kgiraud <kgiraud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 13:37:04 by kgiraud           #+#    #+#             */
-/*   Updated: 2024/11/12 17:33:34 by kgiraud          ###   ########.fr       */
+/*   Updated: 2024/11/12 18:24:14 by kgiraud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (ret);
 }
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	if (!needle[0])
-		return ((char *)haystack);
-	while (haystack[i] && i < len)
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && i < n)
 	{
-		j = 0;
-		while (i + j < len && haystack[i + j] == needle[j])
-		{
-			if (needle[j + 1] == '\0')
-				return ((char *)haystack + i);
-			j++;
-		}
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
-	return (NULL);
+	if (i == n)
+		i -= 1;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
 char	*find_path(char *command, char **envp)
@@ -69,7 +65,7 @@ char	*find_path(char *command, char **envp)
 	int		i;
 
 	i = 0;
-	while (ft_strnstr(envp[i], "PATH", 4) == 0)
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
 	paths = ft_split(envp[i], ':');
 	i = 0;
